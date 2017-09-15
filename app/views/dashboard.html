@@ -1,0 +1,73 @@
+<style media="screen">
+  html,
+  body {
+    height: 100%;
+    background-color: white;
+  }
+
+  .page-row-expanded {
+    height: 100%;
+  }
+
+</style>
+<section class="section-account">
+  <div class="card contain-xs style-transparent">
+    <div class="card-body">
+      <div class="row">
+        <div class="card">
+          <div class="card-body">
+
+            <div class="row">
+              <div class="col-md-3 text-center">
+                <img src="images/pdf.svg" height="80" width="80">
+              </div>
+              <div class="col-md-9 text-center">
+                <h3>Estado de cuenta</h3>
+                 <a type="button" class="btn btn-sm  btn-warning" ng-click="$ctrl.descargar(3)"> <i class="fa fa-download"></i> Descargar </a>
+
+              </div>
+
+
+            </div>
+
+
+          </div>
+        </div>
+        <div class="card">
+
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-3 text-center">
+                <img src="images/file.svg" height="80" width="80">
+              </div>
+              <div class="col-md-9 text-center">
+                <h3>Factura {{$ctrl.Ticket}}</h3>
+                <h4>{{$ctrl.Fecha}}
+                  <h4>
+                    <h4>{{$ctrl.Importe | currency}}</h4>
+                    <a type="button" class="btn btn-sm  btn-warning" ng-click="$ctrl.descargar(1)"> <i class="fa fa-download"></i> Descargar </a>
+
+              </div>
+
+
+            </div>
+
+            <div class="row">
+              <div class="col-md-3 text-center">
+                <img src="images/xml.svg" height="80" width="80">
+              </div>
+              <div class="col-md-9 text-center">
+                <h3>Tu archivo CDFI</h3>
+                <a type="button" class="btn btn-sm  btn-warning" ng-click="$ctrl.descargar(2)"><i class="fa fa-download"></i> Descargar </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--end .col -->
+      </div>
+      <!--end .row -->
+    </div>
+    <!--end .card-body -->
+  </div>
+  <!--end .card -->
+</section>
