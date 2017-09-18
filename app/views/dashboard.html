@@ -16,53 +16,30 @@
       <div class="row">
         <div class="card">
           <div class="card-body">
-
-            <div class="row">
+            <div ng-if="!$ctrl.sindocumentos" ng-repeat="x in $ctrl.documentos">
+            <div class="row" style="margin:15px;">
               <div class="col-md-3 text-center">
-                <img src="images/pdf.svg" height="80" width="80">
+                <img ng-if="x.opcion==1" src="images/file.svg" height="80" width="80">
+                <img ng-if="x.opcion==2" src="images/xml.svg" height="80" width="80">
+                <img ng-if="x.opcion==3" src="images/pdf.svg" height="80" width="80">
               </div>
               <div class="col-md-9 text-center">
-                <h3>Estado de cuenta</h3>
-                 <a type="button" class="btn btn-sm  btn-warning" ng-click="$ctrl.descargar(3)"> <i class="fa fa-download"></i> Descargar </a>
+                <h3>{{x.Nombre}}</h3>
+                <h3>{{x.Importe | currency}}</h3>
+                <h4>{{x.Ticket}}</h4>
+                <h5>{{x.Fecha}}</h5>
+                 <a type="button" class="btn btn-sm  btn-warning" ng-click="$ctrl.descargar(x.opcion)"> <i class="fa fa-download"></i> Descargar </a>
 
               </div>
-
-
             </div>
-
-
-          </div>
-        </div>
-        <div class="card">
-
-          <div class="card-body">
-            <div class="row">
-              <div class="col-md-3 text-center">
-                <img src="images/file.svg" height="80" width="80">
-              </div>
-              <div class="col-md-9 text-center">
-                <h3>Factura {{$ctrl.Ticket}}</h3>
-                <h4>{{$ctrl.Fecha}}
-                  <h4>
-                    <h4>{{$ctrl.Importe | currency}}</h4>
-                    <a type="button" class="btn btn-sm  btn-warning" ng-click="$ctrl.descargar(1)"> <i class="fa fa-download"></i> Descargar </a>
-
-              </div>
-
-
             </div>
-
-            <div class="row">
-              <div class="col-md-3 text-center">
-                <img src="images/xml.svg" height="80" width="80">
-              </div>
-              <div class="col-md-9 text-center">
-                <h3>Tu archivo CDFI</h3>
-                <a type="button" class="btn btn-sm  btn-warning" ng-click="$ctrl.descargar(2)"><i class="fa fa-download"></i> Descargar </a>
-              </div>
+            <div  class="row" ng-if="$ctrl.sindocumentos">
+             <b><p class="text-danger text-center">No se encontraron documentos para descargar</p> </b>
+             
             </div>
           </div>
         </div>
+     
         <!--end .col -->
       </div>
       <!--end .row -->

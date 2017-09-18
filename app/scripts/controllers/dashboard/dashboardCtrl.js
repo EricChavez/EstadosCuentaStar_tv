@@ -4,11 +4,11 @@ angular.module('softvApp')
 
 
     function init() {
-      filesFactory.Getdocumentos($localStorage.currentUser.contrato, 0)
+      filesFactory.Getdocumentosdisponibles($localStorage.currentUser.contrato)
         .then(function (response) {
-          vm.Importe = response.GetdocumentosResult[0].Importe;
-          vm.Fecha = response.GetdocumentosResult[0].Fecha;
-          vm.Ticket = response.GetdocumentosResult[0].Ticket;
+          vm.documentos = response.GetdocumentosdisponiblesResult;
+          vm.sindocumentos = (vm.documentos.length > 0) ? false : true;
+          console.log(response);
         });
     }
 
@@ -26,7 +26,7 @@ angular.module('softvApp')
             target: '_blank',
             download: vm.url
           })[0].click();
-          filesFactory.GetDeletedocumentos(response.GetdocumentosResult[0].Nombre).then(function (data) {});
+          // filesFactory.GetDeletedocumentos(response.GetdocumentosResult[0].Nombre).then(function (data) {});
 
         });
     }
