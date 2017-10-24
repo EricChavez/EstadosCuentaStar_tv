@@ -29,6 +29,20 @@ angular
 						controllerAs: '$ctrl'
 					}
 				},
+			},
+			{
+				name: 'signin',	
+				url: '/signin',			
+				data: {
+					pageTitle: ' REGISTRATE | softv WEB'
+				},
+				views: {
+					'signinview': {
+						templateUrl: 'views/signin.html',
+						controller: 'signinCtrl',
+						controllerAs: '$ctrl'
+					}
+				}		
 			}
 		];
 
