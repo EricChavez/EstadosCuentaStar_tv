@@ -35,27 +35,91 @@
   </div>
   <!-- /.container-fluid -->
 </nav>
-<div class="col-md-12">
+<div class="col-md-12" ng-if="$ctrl.showcapturaserie">
   <h3 class="text-center text-primary"><b>Crea tu cuenta de Star TV</b></h3>
 
   <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
     <h3 class="" style="font-family: 'Roboto', sans-serif;"> Ingresa la serie del aparato principal (Internet,Television,Bundle) </h3>
     <div class="col-md-8">
-      <input type="text" class="form-control" placeholder="Ingresa aqui el número de serie">
+      <input type="text" class="form-control" placeholder="Ingresa aqui el número de serie" ng-model="$ctrl.serie">
       <br>
       <div class="alert alert-info" role="alert">
-        <i class="fa fa-info-circle" aria-hidden="true"></i>
-         Si necesitas ayuda para saber la ubicación de la serie y el tipo de aparato puedes consultarla aquí
+        <i class="fa fa-info-circle" aria-hidden="true"></i> Si necesitas ayuda para saber la ubicación de la serie y el
+        tipo de aparato puedes consultarla aquí
         <a href="#" class="alert-link">Ayuda</a>
       </div>
     </div>
 
     <div class="col-md-4">
-      <button class="btn btn-warning "> Aceptar</button>
+      <button class="btn btn-warning " ng-click="$ctrl.confirmar()"> Aceptar</button>
     </div>
   </div>
+</div>
 
-  <!--    <h5>Selecciona el servicio que tienes instalado</h5>
+
+<div class="col-md-12  " ng-if="$ctrl.showinfo">
+
+  <div class="col-md-8 card col-md-offset-2 col-sm-8 col-sm-offset-2">
+    <div class="row" style="background: black; padding: 10px;">
+      <div class="col-md-3">
+        <img src="images/startvblack.svg" width="100" height="100">
+      </div>
+      <div class="col-md-9">
+        <h3 style="color: white"><b>¡Bienvenido sus datos han sido validados! </b></h3>
+      </div>
+    </div>
+
+
+    <div class="card-body">
+
+     <div class="col-md-12">
+      <div class="col-md-6" style="margin-top: 50px;">
+        <h3><b>Cliente: {{$ctrl.user.Cliente}}</b></h3>
+        <h4>No.Contrato: {{$ctrl.user.ContratoCompuesto}}</h4>
+        <h3>No.serie: {{$ctrl.serie}}</h3>
+
+      </div>
+      <div class="col-md-6">
+        <p class="text-muted">Ingresa el correo electrónico con el que accesarás a este sitio </p>
+
+        <div class="col-md-12 form-group">
+          <input type="email" class="form-control" placeholder="Ingresa tu correo electrónico" ng-model="$ctrl.email">
+          <p class="help-block">Te enviaremos un correo a esta cuenta una vez finalizado el registro</p>
+        </div>
+        <div class="col-md-12 form-group">
+          <input type="password" class="form-control" placeholder="Ingresa tu contraseña" ng-model="$ctrl.password">
+          <p class="help-block">Asegurate que tu contraseña contenga letras y números</p>
+        </div>
+        <div class="col-md-12 form-group">
+          <input type="password" class="form-control" placeholder="Valida tu contraseña">
+        </div>
+          <div class="col-md-12 form-group">
+          <button class="btn btn-warning btn-block" ng-click="$ctrl.Registrar()"> Registrar </button>
+        </div>
+
+      </div>
+     </div>
+
+
+      <div class="col-md-12">
+        <div class="alert alert-warning text-center" role="alert">
+
+          <h5>¿No reconoces esta información?,<a class="alert-link" href="#">Intenta ingresando otra serie</a></h5>
+          <h6> Atención a clientes:01 800 700 STAR (7827)</h6>
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+
+  </div>
+
+</div>
+
+<!--    <h5>Selecciona el servicio que tienes instalado</h5>
 
     <div class="col-md-6">
       <h1>Televisón Digital</h1>
@@ -65,7 +129,7 @@
       <h1>Internet y Bundle</h1>
     </div>-->
 
-</div>
+
 <!-- <div class="col-md-3">
     <div class="thumbnail">
       <img src="images/Captura2.PNG" alt="...">

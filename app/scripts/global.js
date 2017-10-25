@@ -4,11 +4,11 @@ angular
   .service('globalService', function () {
     var svc = {};
     svc.getUrl = function() {
-      return 'http://172.16.126.58/SoftvWCFService.svc';    
+      return 'http://localhost:64481/SoftvWCFService.svc';    
     	};
 
     	svc.getUrlReportes = function() {
-    		return 'http://172.16.126.58:6060';
+    		return 'http://localhost:64481/';
     	};
 
     
