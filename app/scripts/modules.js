@@ -42,8 +42,23 @@ angular
 						controller: 'signinCtrl',
 						controllerAs: '$ctrl'
 					}
+					}
+				},
+				{
+				name: 'recover',	
+				url: '/recover',			
+				data: {
+					pageTitle: ' RECUPERAR CONTRASEÑA | softv WEB'
+				},
+				views: {
+					'recoverview': {
+						templateUrl: 'views/recover.html',
+						controller: 'recoverCtrl',
+						controllerAs: '$ctrl'
+					}
 				}		
-			}
+			}		
+			
 		];
 
 		states.forEach(function(state) {

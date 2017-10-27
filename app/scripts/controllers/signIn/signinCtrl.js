@@ -1,7 +1,7 @@
 'use strict';
 angular
   .module('softvApp')
-  .controller('signinCtrl', function (signInFactory) {
+  .controller('signinCtrl', function (signInFactory, ngNotify) {
     function initialData() {
 
     }
@@ -19,7 +19,14 @@ angular
 
     function Registrar() {
       signInFactory.Getregistracliente(vm.user.Contrato, vm.email, vm.password).then(function (result) {
-        console.log(result);
+        if (result.GetregistraclienteResult == 0) {
+          ngNotify.set('Ha ocurrido un error al registrar el usuario', 'error');
+        }
+        if (result.GetregistraclienteResult == 1) {
+          ngNotify.set('Se ha registrado correctamente ahora puede iniciar sesión', 'success');
+        } else {
+           ngNotify.set('Hemos detectado una cuenta existente con el correo ingresado', 'error');
+        }
       });
     }
 
@@ -27,6 +34,6 @@ angular
     vm.confirmar = confirmar;
     vm.showcapturaserie = true;
     vm.showinfo = false;
-    vm.Registrar=Registrar;
+    vm.Registrar = Registrar;
     initialData();
   });

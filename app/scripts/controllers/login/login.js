@@ -9,6 +9,7 @@ angular
     }
 
     function login() {
+      alert('login');
       authFactory.login(vm.user, vm.password).then(function (data) {
         if (data) {
           $window.location.reload();

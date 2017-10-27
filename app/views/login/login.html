@@ -1,57 +1,61 @@
-
 <style>
-    body {
-        background-color: #ffffff;
-    }
+  body {
+    background-color: #ffffff;
+    font-family: 'Calibri';
+  }
+
 </style>
 
 
-<div class="col-md-12" style="margin-top: 150px;">
+<div class="col-md-12" style="margin-top: 50px;">
 
-    <div class=" col-md-7 col-md-offset-2">
-        <div class="col-md-5 text-center">
-
-            <img src="images/startv.png" width="250" height="250">
-        </div>
-
-        <div class="col-md-7 card" style="padding:20px;">
-
-            <h3 class="text-info text-center">Accesa al sistema</h3>
-            <p class="text-muted text-center">Ingresa tu usuario y contraseña proporcionado</p>
-            <form class="login-form" angular-validator-submit="$ctrl.login()" autocomplete="off" name="myForm" novalidate angular-validator>
-           
-                <div class="form-group">
-
-                   <input type="text" placeholder="username" name="nombre" ng-model="$ctrl.user" validate-on="dirty" ng-model="form.dirty" class="form-control" required-message="'El usuario es obligatorio.'" required/>
-                </div>
-                <div class="form-group">
-
-                    <input type="password" placeholder="password" name="password" ng-model="$ctrl.password" validate-on="dirty" ng-model="form.dirty" class="form-control" required-message="'La contraseña es obligatoria.'" required/>
-                </div>
-                <div>
-
-                </div>
-                <div class="col-md-12">
-                   
-                
-                  <div class="col-md-6">
-
-                    <button type="submit" class="btn btn-warning btn-sm">Acceder</button>
-                  </div>
-                  <div class="col-md-6">
-
-                    <a href="#!/signin" class="text-info">Crear cuenta</a>
-                  </div>
-
-                </div>
-               
-            </form>
-
-
-        </div>
-
-
+  <div class=" col-md-4 card col-md-offset-4 w3-container w3-center w3-animate-top" style="padding: 30px;">
+    <div class="col-md-12 text-center">
+      <img src="images/startv.png" width="200" height="150">
     </div>
+    <form class="login-form" angular-validator-submit="$ctrl.login()" autocomplete="off" name="myForm" novalidate angular-validator>
+      <div class="col-md-12">
+
+        <h3 class="text-info text-center" style="color: #ffc526;">Accesa al sistema</h3>
+        <p class="text-muted text-center">Ingresa tu usuario y contraseña proporcionado</p>
+
+
+        <div class="form-group row">
+
+          <input type="text" placeholder="correo electrónico" name="nombre" ng-model="$ctrl.user" validate-on="dirty" class="form-control"
+            required-message="'El usuario es obligatorio.'" required/>
+        </div>
+        <div class="form-group row">
+
+          <input type="password" placeholder="password" name="password" ng-model="$ctrl.password" validate-on="dirty" class="form-control"
+            required-message="'La contraseña es obligatoria.'" required/>
+        </div>
+
+      </div>
+
+
+
+
+      <div class="col-md-12">
+        <div class="col-md-6">
+          <a href="#!/recover" class="text-info">Olvidé mi contraseña</a>
+        </div>
+        <div class="col-md-6">
+          <button type="submit" class="btn btn-warning btn-block">Acceder</button>
+        </div>
+      </div>
+      <div class="col-md-12 text-center">
+        <br>
+        <a href="#!/signin">¿Aún no estas registrado? <b> Crear cuenta</b></a>
+      </div>
+
+    </form>
+
+
+
+
+
+  </div>
 
 
 </div>
