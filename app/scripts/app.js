@@ -13,6 +13,7 @@ angular
     //'permission', 'permission.ui',
     //'ui.mask', 'dndLists',
     //'smart-table',
+    'angularMoment',
     'ngSanitize',
     //'ngCsv',
     //'googlechart',
@@ -74,12 +75,12 @@ angular
     delete $httpProvider.defaults.headers.common['X-Requested-With'];
   }])
   .constant('APP_CONFIG', window.appConfig)
-  .run(['$rootScope', '$window', '$state', '$stateParams', '$localStorage', '$location', function ($rootScope, $window, $state, $stateParams, $localStorage, $location) {
+  .run(['$rootScope', '$window', '$state', '$stateParams', '$localStorage', '$location', 'amMoment', function ($rootScope, $window, $state, $stateParams, $localStorage, $location, amMoment) {
     $rootScope.$state = $state;
     $rootScope.$stateParams = $stateParams;
 
 
-
+    amMoment.changeLocale('es');
 
     if ($localStorage.currentUser) {
       $location.path('/home/');

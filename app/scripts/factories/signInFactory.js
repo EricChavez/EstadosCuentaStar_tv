@@ -4,8 +4,62 @@ angular.module('softvApp')
     var factory = {};
     var paths = {
       GetvalidaAparato: '/SessionWeb/GetvalidaAparato',
-      Getregistracliente:'/SessionWeb/Getregistracliente'
+      Getregistracliente:'/SessionWeb/Getregistracliente',
+      GetValidaRecoverPassword:'/SessionWeb/GetValidaRecoverPassword'
     };
+
+    factory.GetValidaRecoverPassword = function (serie,email) {
+      var deferred = $q.defer();
+      var Parametros = {
+        'id':0,
+        'serie': serie,
+        'email': email
+      };
+      var config = {
+        headers: {
+          'Authorization': 'Basic ' + ''
+        }
+      };
+      $http.post(globalService.getUrl() + paths.GetValidaRecoverPassword, JSON.stringify(Parametros),config)
+        .then(function (response) {         
+          deferred.resolve(response);
+        })
+        .catch(function (response) {
+
+          deferred.reject(response.statusText);
+        });
+      return deferred.promise;
+    };
+
+
+    factory.GetvalidaAparato = function (serie) {
+      var deferred = $q.defer();
+      var Parametros = {
+        'id': 0,
+        'serie': serie
+      };
+      var config = {
+        headers: {
+          'Authorization': 'Basic ' + ''
+        }
+      };
+      $http.post(globalService.getUrl() + paths.GetvalidaAparato, JSON.stringify(Parametros),config)
+        .then(function (response) {         
+          deferred.resolve(response);
+        })
+        .catch(function (response) {
+
+          deferred.reject(response.statusText);
+        });
+      return deferred.promise;
+    };
+
+
+
+ 
+
+
+
     factory.GetvalidaAparato = function (serie) {
       var deferred = $q.defer();
       var Parametros = {
