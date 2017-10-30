@@ -22,6 +22,8 @@ angular
     //'multipleSelect',
     'base64',
     //'colorpicker.module'
+   'validation.match',
+   'vcRecaptcha'
   ])
   .config(['$provide', '$urlRouterProvider', '$httpProvider', 'cfpLoadingBarProvider', '$qProvider', 'blockUIConfig', function ($provide, $urlRouterProvider, $httpProvider, cfpLoadingBarProvider, $qProvider, blockUIConfig) {
     $urlRouterProvider.otherwise(function ($injector) {

@@ -4,14 +4,41 @@ angular.module('softvApp')
     var factory = {};
     var paths = {
       GetvalidaAparato: '/SessionWeb/GetvalidaAparato',
-      Getregistracliente:'/SessionWeb/Getregistracliente',
-      GetValidaRecoverPassword:'/SessionWeb/GetValidaRecoverPassword'
+      Getregistracliente: '/SessionWeb/Getregistracliente',
+      GetValidaRecoverPassword: '/SessionWeb/GetValidaRecoverPassword',
+      GetUpdateCliente: '/SessionWeb/GetUpdateCliente'
     };
 
-    factory.GetValidaRecoverPassword = function (serie,email) {
+    factory.GetUpdateCliente = function (contrato, correo, password) {
       var deferred = $q.defer();
       var Parametros = {
-        'id':0,
+        'contrato': contrato,
+        'correo': correo,
+        'password': password
+      };
+      var config = {
+        headers: {
+          'Authorization': 'Basic ' + ''
+        }
+      };
+      console.log(Parametros);
+      $http.post(globalService.getUrl() + paths.GetUpdateCliente, JSON.stringify(Parametros), config)
+        .then(function (response) {
+          deferred.resolve(response);
+        })
+        .catch(function (response) {
+
+          deferred.reject(response.statusText);
+        });
+      return deferred.promise;
+    };
+
+
+
+    factory.GetValidaRecoverPassword = function (serie, email) {
+      var deferred = $q.defer();
+      var Parametros = {
+        'id': 0,
         'serie': serie,
         'email': email
       };
@@ -20,8 +47,8 @@ angular.module('softvApp')
           'Authorization': 'Basic ' + ''
         }
       };
-      $http.post(globalService.getUrl() + paths.GetValidaRecoverPassword, JSON.stringify(Parametros),config)
-        .then(function (response) {         
+      $http.post(globalService.getUrl() + paths.GetValidaRecoverPassword, JSON.stringify(Parametros), config)
+        .then(function (response) {
           deferred.resolve(response);
         })
         .catch(function (response) {
@@ -43,8 +70,8 @@ angular.module('softvApp')
           'Authorization': 'Basic ' + ''
         }
       };
-      $http.post(globalService.getUrl() + paths.GetvalidaAparato, JSON.stringify(Parametros),config)
-        .then(function (response) {         
+      $http.post(globalService.getUrl() + paths.GetvalidaAparato, JSON.stringify(Parametros), config)
+        .then(function (response) {
           deferred.resolve(response);
         })
         .catch(function (response) {
@@ -56,7 +83,7 @@ angular.module('softvApp')
 
 
 
- 
+
 
 
 
@@ -71,8 +98,8 @@ angular.module('softvApp')
           'Authorization': 'Basic ' + ''
         }
       };
-      $http.post(globalService.getUrl() + paths.GetvalidaAparato, JSON.stringify(Parametros),config)
-        .then(function (response) {         
+      $http.post(globalService.getUrl() + paths.GetvalidaAparato, JSON.stringify(Parametros), config)
+        .then(function (response) {
           deferred.resolve(response);
         })
         .catch(function (response) {
@@ -82,20 +109,20 @@ angular.module('softvApp')
       return deferred.promise;
     };
 
-    factory.Getregistracliente = function (contrato,login,pasaporte) {
+    factory.Getregistracliente = function (contrato, login, pasaporte) {
       var deferred = $q.defer();
       var Parametros = {
         'contrato': contrato,
         'login': login,
-        'pasaporte':pasaporte
+        'pasaporte': pasaporte
       };
       var config = {
         headers: {
           'Authorization': 'Basic ' + ''
         }
       };
-      $http.post(globalService.getUrl() + paths.Getregistracliente, JSON.stringify(Parametros),config)
-        .then(function (response) {         
+      $http.post(globalService.getUrl() + paths.Getregistracliente, JSON.stringify(Parametros), config)
+        .then(function (response) {
           deferred.resolve(response);
         })
         .catch(function (response) {

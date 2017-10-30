@@ -1,27 +1,16 @@
 'use strict';
 angular
   .module('softvApp')
-  .controller('recoverCtrl', function (signInFactory, ngNotify, moment, $base64) {
-    function initialData() {
-      moment().format('LLL');
-      console.log(moment().format('LLL'));
+  .controller('recoverCtrl', function (signInFactory, ngNotify, moment, $base64, vcRecaptchaService, authFactory,$window) {
 
 
-      var base64EncodedString = $base64.encode('507f1f77bcf86cd799439011' + '.' + moment().format('LLL'));
-      var urlSafeBase64EncodedString = encodeURIComponent(base64EncodedString);
-      /*
-            console.log('base64EncodedString', base64EncodedString);
-            console.log('urlSafeBase64EncodedString', urlSafeBase64EncodedString);
-            var decodedString = $base64.decode(base64EncodedString);
-            console.log('decodedString', decodedString);*/
-      // 
-    }
 
     function validar() {
       signInFactory.GetValidaRecoverPassword(vm.serie, vm.email).then(function (result) {
-        if (result.data.GetValidaRecoverPasswordResult === true) {
+        if (result.data.GetValidaRecoverPasswordResult > 0) {
           vm.showvalidationform = false;
           vm.showresetform = true;
+          vm.contrato = result.data.GetValidaRecoverPasswordResult;
         } else {
           ngNotify.set('No se encpntró ninguna cuenta activa con los datos proporcionados ', 'error');
         }
@@ -30,12 +19,46 @@ angular
 
     function reset() {
 
+      signInFactory.GetUpdateCliente(vm.contrato, vm.email, vm.nuepass).then(function (response) {
+
+        ngNotify.set('Los accesos se han modificando correctamente', 'success');
+        authFactory.login(vm.user, vm.password).then(function (data) {
+          if (data) {
+            $window.location.reload();
+          } else {
+            ngNotify.set('Datos de acceso erróneos', 'error');
+          }
+
+        });
+      });
+
     }
+
 
     var vm = this;
     vm.validar = validar;
     vm.reset = reset;
     vm.showvalidationform = true;
     vm.showresetform = false;
-    initialData();
+    vm.contrato = 0;
+
+
+    vm.captcharesponse = null;
+    vm.widgetId = null;
+    vm.captcha = {
+      key: '6Lf9hzYUAAAAAPKN-w3LREiE1RgSOMYQ6U3sE_CH'
+    };
+    vm.setResponse = function (response) {
+      console.info('Response available');
+      vm.captcharesponse = response;
+    };
+    vm.setWidgetId = function (widgetId) {
+      console.info('Created widget ID: %s', widgetId);
+      vm.widgetId = widgetId;
+    };
+    vm.cbExpiration = function () {
+      console.info('Captcha expired. Resetting response object');
+      vcRecaptchaService.reload(vm.widgetId);
+      vm.captcharesponse = null;
+    };
   });
