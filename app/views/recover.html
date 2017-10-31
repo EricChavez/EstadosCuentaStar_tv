@@ -54,8 +54,8 @@
         <input name="serie" type="text" class="form-control" placeholder="Ingresa aquí el número de serie" validate-on="dirty" required-message="'La serie es obligatoria.'"
           required ng-model="$ctrl.serie">
       </div>
-       <div class="col-md-6 col-md-offset-6 text-right">
-         <br>
+      <div class="col-md-6 col-md-offset-6 text-right">
+        <br>
         <button class="btn btn-warning btn-block " ng-click="$ctrl.confirmar()"> Aceptar</button>
       </div>
       <br>
@@ -67,7 +67,7 @@
           <a href="#" class="alert-link">Ayuda</a>
         </div>
       </div>
-     
+
     </div>
 
   </form>
@@ -84,52 +84,39 @@
 
       <div class="col-md-12">
         <label>Correo electrónico actual</label>
-        <input type="email" class="form-control" name="correoactual"
-         class="form-control"        
-          required ng-model="$ctrl.email">
+        <input type="email" class="form-control" name="correoactual" class="form-control" required ng-model="$ctrl.email">
 
-          <p class="text-help text-danger"><b>¡ Atención !</b> este es el correo de acceso al sistema, al modificarlo tendras que acceder con el nuevo correo registrado </p>
-           <span class="text-danger"  ng-show="!form.correoactual.$valid"> ¡No es un correo valido!</span>
+        <p class="text-help text-danger"><b>¡ Atención !</b> este es el correo de acceso al sistema, al modificarlo tendras que acceder con el nuevo correo
+          registrado </p>
+        <span class="text-danger" ng-show="!form.correoactual.$valid"> ¡No es un correo valido!</span>
       </div>
 
       <div class="col-md-12">
         <br>
         <label>Nueva Contraseña</label>
-        <input type="password" 
-         class="form-control" pattern=".{6,}"
-          required-message="'la contraseña es obligatoria y tiene que tener un minimo de 6 caracteres'"
+        <input type="password" class="form-control" pattern=".{6,}" 
           required name="nuepass" ng-model="$ctrl.nuepass">
-
+        <span class="text-danger" ng-show="!form.nuepass.$valid">la contraseña es obligatoria y tiene que tener un minimo de 6 caracteres</span>
       </div>
-    
+
       <div class="col-md-12">
         <br>
         <div class="form-group" ng-class="{ 'has-error': form.valpass.$invalid && !form.valpass.$pristine }">
           <label for="confirm-password">Confirma contraseña</label>
-          <input type="password" name="valpass" id="confirm-password"
-          pattern=".{6,}"
-           class="form-control" ng-model="$ctrl.valpass" required
-           match="$ctrl.nuepass"
-          
-          />
+          <input type="password" name="valpass" id="confirm-password" pattern=".{6,}" class="form-control" ng-model="$ctrl.valpass"
+            required match="$ctrl.nuepass" />
           <span class="text-danger" ng-if="$ctrl.nuepass !== $ctrl.valpass" ng-show="form.valpass.$dirty"> La contraseña no coincide</span>
         </div>
-      </div>   
-    
-      <div class="col-md-12">
-
-        <div
-                vc-recaptcha
-                theme="'light'"
-                key="$ctrl.captcha.key"
-                on-create="$ctrl.setWidgetId(widgetId)"
-                on-success="$ctrl.setResponse(response)"
-                on-expire="$ctrl.cbExpiration()"
-            ></div>
       </div>
 
       <div class="col-md-12">
-        <br>       
+
+        <div vc-recaptcha theme="'light'" key="$ctrl.captcha.key" on-create="$ctrl.setWidgetId(widgetId)" on-success="$ctrl.setResponse(response)"
+          on-expire="$ctrl.cbExpiration()"></div>
+      </div>
+
+      <div class="col-md-12">
+        <br>
         <button type="submit" ng-disabled="!form.$valid  ||  $ctrl.captcharesponse ==null" class="btn btn-warning btn-block">Cambiar mis datos de acceso</button>
         <p class="text-muted text-center">(Al aceptar et enviaremos un correo con tus nuevas credenciales de acceso)</p>
       </div>

@@ -3,7 +3,7 @@
   body {
     height: 100%;
     background-color: white;
-       font-family: 'Calibri';
+    font-family: 'Calibri';
   }
 
 </style>
@@ -20,7 +20,7 @@
         <span class="icon-bar"></span>
       </button>
 
-      <img src="images/startv.png" width="50" height="50">
+      <img src="images/startv.png" width="50" height="35">
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -61,7 +61,7 @@
 <div class="col-md-12  " ng-if="$ctrl.showinfo">
 
   <div class="col-md-8 card col-md-offset-2 col-sm-8 col-sm-offset-2">
-    <div class="row" style="background:gree; padding: 10px;">
+    <div class="row" style="background:black; padding: 10px;">
       <div class="col-md-3">
         <img src="images/startvblack.svg" width="100" height="100">
       </div>
@@ -72,53 +72,72 @@
 
 
     <div class="card-body">
+      <form class="login-form" autocomplete="off" name="form" ng-submit="$ctrl.Registrar()">
+        <div class="col-md-12">
+          <div class="col-md-6" style="margin-top: 50px;">
+            <h3><b>Cliente: {{$ctrl.user.Cliente}}</b></h3>
+            <h4>No.Contrato: {{$ctrl.user.ContratoCompuesto}}</h4>
+            <h3>No.serie: {{$ctrl.serie}}</h3>
 
-     <div class="col-md-12">
-      <div class="col-md-6" style="margin-top: 50px;">
-        <h3><b>Cliente: {{$ctrl.user.Cliente}}</b></h3>
-        <h4>No.Contrato: {{$ctrl.user.ContratoCompuesto}}</h4>
-        <h3>No.serie: {{$ctrl.serie}}</h3>
+          </div>
+          <div class="col-md-6">
+            <label class="text-muted text-center"><b>Ingresa el correo electrónico con el que accesarás a este sitio</b> </label>
 
-      </div>
-      <div class="col-md-6">
-        <p class="text-muted">Ingresa el correo electrónico con el que accesarás a este sitio </p>
+            <div class="col-md-12">
+              <input type="email" class="form-control" name="email" placeholder="Ingresa tu correo electrónico" ng-model="$ctrl.email" required>
+              <span class="text-danger" ng-show="!form.email.$valid"> ¡No es un correo valido!</span>
+            </div>
+            <div class="col-md-12">
+              <input type="password" class="form-control" placeholder="Ingresa tu contraseña" pattern=".{6,}" name="password" ng-model="$ctrl.password">
+              <span class="text-danger" ng-show="!form.password.$valid">la contraseña es obligatoria y tiene que tener un minimo de 6 caracteres</span>
+            </div>
+            <div class="col-md-12">
+              <div class="form-group" ng-class="{ 'has-error': form.passwordvalidate.$invalid && !form.passwordvalidate.$pristine }">
+                <label for="passwordvalidate">Confirma contraseña</label>
+                <input type="password" class="form-control" placeholder="Valida tu contraseña" pattern=".{6,}" required match="$ctrl.password"
+                  name="passwordvalidate" ng-model="$ctrl.passwordvalidate">
+                <span class="text-danger" ng-if="$ctrl.password !== $ctrl.passwordvalidate" ng-show="form.passwordvalidate.$dirty"> La contraseña no coincide</span>
+              </div>
+            </div>
+            <div class="col-md-12">
 
-        <div class="row form-group">
-          <input type="email" class="form-control" placeholder="Ingresa tu correo electrónico" ng-model="$ctrl.email">
-          <p class="help-block">Te enviaremos un correo a esta cuenta una vez finalizado el registro</p>
+              <div vc-recaptcha theme="'light'" key="$ctrl.captcha.key" on-create="$ctrl.setWidgetId(widgetId)" on-success="$ctrl.setResponse(response)"
+                on-expire="$ctrl.cbExpiration()"></div>
+            </div>
+            <br>
+            <br>
+            <div class="col-md-12">
+              <button type="submit" class="btn btn-warning btn-block" ng-disabled="!form.$valid  ||  $ctrl.captcharesponse ==null"> Registrar </button>
+
+            </div>
+            <div class="col-md-12">
+              <p class="help-block">Te enviaremos un correo a esta cuenta una vez finalizado el registro</p>
+            </div>
+
+          </div>
         </div>
-        <div class="row form-group">
-          <input type="password" class="form-control" placeholder="Ingresa tu contraseña" ng-model="$ctrl.password">
-          <p class="help-block">Asegurate que tu contraseña contenga letras y números</p>
-        </div>
-        <div class="row form-group">
-          <input type="password" class="form-control" placeholder="Valida tu contraseña">
-        </div>
-          <div class="col-md-12 form-group">
-          <button class="btn btn-warning btn-block" ng-click="$ctrl.Registrar()"> Registrar </button>
-        </div>
-
-      </div>
-     </div>
 
 
-      <div class="col-md-12">
-        <div class="alert alert-warning text-center" role="alert">
 
-          <h5>¿No reconoces esta información?,<a class="alert-link" href="#">Intenta ingresando otra serie</a></h5>
-          <h6> Atención a clientes:01 800 700 STAR (7827)</h6>
-        </div>
+      </form>
 
+
+
+    </div>
+    <div class="row">
+      <div class="alert alert-warning text-center" role="alert">
+
+        <h5>¿No reconoces esta información?,<a class="alert-link" href="#">Intenta ingresando otra serie</a></h5>
+        <h6> Atención a clientes:01 800 700 STAR (7827)</h6>
       </div>
 
     </div>
-
-
-
-
   </div>
 
+
+
 </div>
+
 
 <!--    <h5>Selecciona el servicio que tienes instalado</h5>
 

@@ -1,6 +1,6 @@
 'use strict';
 angular.module('softvApp')
-  .factory('signInFactory', function ($http, $q, $window, globalService, $localStorage, $location, $base64) {
+  .factory('signInFactory', function ($http, $q, $window, globalService) {
     var factory = {};
     var paths = {
       GetvalidaAparato: '/SessionWeb/GetvalidaAparato',
@@ -22,7 +22,7 @@ angular.module('softvApp')
         }
       };
       console.log(Parametros);
-      $http.post(globalService.getUrl() + paths.GetUpdateCliente, JSON.stringify(Parametros), config)
+      $http.post(globalService.getUrlregistro() + paths.GetUpdateCliente, JSON.stringify(Parametros), config)
         .then(function (response) {
           deferred.resolve(response);
         })
@@ -47,7 +47,7 @@ angular.module('softvApp')
           'Authorization': 'Basic ' + ''
         }
       };
-      $http.post(globalService.getUrl() + paths.GetValidaRecoverPassword, JSON.stringify(Parametros), config)
+      $http.post(globalService.getUrlregistro() + paths.GetValidaRecoverPassword, JSON.stringify(Parametros), config)
         .then(function (response) {
           deferred.resolve(response);
         })
@@ -70,7 +70,7 @@ angular.module('softvApp')
           'Authorization': 'Basic ' + ''
         }
       };
-      $http.post(globalService.getUrl() + paths.GetvalidaAparato, JSON.stringify(Parametros), config)
+      $http.post(globalService.getUrlregistro() + paths.GetvalidaAparato, JSON.stringify(Parametros), config)
         .then(function (response) {
           deferred.resolve(response);
         })
@@ -98,7 +98,7 @@ angular.module('softvApp')
           'Authorization': 'Basic ' + ''
         }
       };
-      $http.post(globalService.getUrl() + paths.GetvalidaAparato, JSON.stringify(Parametros), config)
+      $http.post(globalService.getUrlregistro() + paths.GetvalidaAparato, JSON.stringify(Parametros), config)
         .then(function (response) {
           deferred.resolve(response);
         })
@@ -121,7 +121,7 @@ angular.module('softvApp')
           'Authorization': 'Basic ' + ''
         }
       };
-      $http.post(globalService.getUrl() + paths.Getregistracliente, JSON.stringify(Parametros), config)
+      $http.post(globalService.getUrlregistro() + paths.Getregistracliente, JSON.stringify(Parametros), config)
         .then(function (response) {
           deferred.resolve(response);
         })
