@@ -40,20 +40,38 @@
   <h3 class="text-center text-primary"><b>Crea tu cuenta de Star TV</b></h3>
 
   <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
-    <h3 class="" style="font-family: 'Roboto', sans-serif;"> Ingresa la serie del aparato principal (Internet, Television, Bundle) </h3>
+    <h4 class="text-center" style="font-family: 'Roboto', sans-serif;"> Ingresa la serie del aparato principal  </h4>
     <div class="col-md-8">
       <input type="text" class="form-control" placeholder="Ingresa aqui el número de serie" ng-model="$ctrl.serie">
       <br>
-      <div class="alert alert-info" role="alert">
+      <!-- <div class="alert alert-info" role="alert">
         <i class="fa fa-info-circle" aria-hidden="true"></i> Si necesitas ayuda para saber la ubicación de la serie y el
         tipo de aparato puedes consultarla aquí
         <a href="#" class="alert-link">Ayuda</a>
-      </div>
+      </div>-->
     </div>
 
     <div class="col-md-4">
       <button class="btn btn-warning btn-block " ng-click="$ctrl.confirmar()"> Aceptar</button>
     </div>
+  </div>
+
+  <div class="col-md-12">
+    <div class="col-md-12">
+      <h3 class="text-primary text-center">Idenfica la serie de tu aparato</h3>
+      <hr>
+    </div>
+
+    <div class="col-md-6 text-center">
+      <img src="images/stb.jpg" width="400" height="300">
+    </div>
+    <div class="col-md-6 text-center">
+      <img src="images/cablemodem.jpg" width="400" height="300">
+    </div>
+
+
+
+
   </div>
 </div>
 
@@ -84,7 +102,8 @@
             <label class="text-muted text-center"><b>Ingresa el correo electrónico con el que accesarás a este sitio</b> </label>
 
             <div class="col-md-12">
-              <input type="email" class="form-control" name="email" placeholder="Ingresa tu correo electrónico" ng-model="$ctrl.email" required>
+              <input type="email" class="form-control" name="email" placeholder="Ingresa tu correo electrónico" ng-model="$ctrl.email"
+                required>
               <span class="text-danger" ng-show="!form.email.$valid"> ¡No es un correo valido!</span>
             </div>
             <div class="col-md-12">
