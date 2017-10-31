@@ -23,5 +23,9 @@ angular
 
     var vm = this;
     initData();
+    var x=0;
+
+
+    
     vm.login = login;
   });
