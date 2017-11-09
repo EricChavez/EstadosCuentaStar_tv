@@ -1,7 +1,7 @@
 'use strict';
 angular
   .module('softvApp')
-  .controller('recoverCtrl', function (signInFactory, ngNotify, moment, $base64, vcRecaptchaService, authFactory,$window) {
+  .controller('recoverCtrl', function (signInFactory, ngNotify, moment, $base64, vcRecaptchaService, authFactory, $window) {
 
 
 
@@ -18,20 +18,40 @@ angular
     }
 
     function reset() {
-
-      signInFactory.GetUpdateCliente(vm.contrato, vm.email, vm.nuepass).then(function (response) {
-
-        ngNotify.set('Los accesos se han modificando correctamente', 'success');
-        authFactory.login(vm.user, vm.password).then(function (data) {
-          if (data) {
-            $window.location.reload();
+      
+      signInFactory.GetUpdateCliente(vm.contrato, vm.email, vm.nuepass).then(function (response) {     
+      //  ngNotify.set('Los accesos se han modificando correctamente', 'success');      
+          vm.showresetform=false;
+          if (response) {
+            vm.showsuccess=true;
+          //  $window.location.reload();
           } else {
-            ngNotify.set('Datos de acceso erróneos', 'error');
+            vm.showerr=true;
+           // ngNotify.set('Ocurrió un error al tratar de reestablecer yu contraseña', 'error');
           }
 
-        });
+       
       });
 
+    }
+
+    function valideEmail(value) {
+      if (value) {
+        vm.wait = true;
+        vm.showMessageemail = false;
+        signInFactory.validateEmail(vm.email, vm.contrato).then(function (result) {
+          console.log(result);
+          vm.wait = false;
+          if (result.data.validateEmailResult === true) {
+            vm.showMessageemail = true;
+            vm.iconemail = 'fa fa-times';
+            vm.messageemail = 'Este correo ya esta registrado en el sistema';
+
+          } else {
+            vm.showMessageemail = false;
+          }
+        });
+      }
     }
 
 
@@ -41,10 +61,13 @@ angular
     vm.showvalidationform = true;
     vm.showresetform = false;
     vm.contrato = 0;
-
-
+    vm.valideEmail = valideEmail;
+    vm.wait=false;
+    vm.showMessageemail = false;
     vm.captcharesponse = null;
     vm.widgetId = null;
+    vm.showsuccess=false;
+    vm.showerr=false;
     vm.captcha = {
       key: '6Lf9hzYUAAAAAPKN-w3LREiE1RgSOMYQ6U3sE_CH'
     };

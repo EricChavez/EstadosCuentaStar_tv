@@ -28,7 +28,9 @@
 
 
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#" class="text-info">Iniciar sesión</a></li>
+        <li>
+          <a href="#" class="text-info">Iniciar sesión</a>
+        </li>
 
       </ul>
     </div>
@@ -37,41 +39,49 @@
   <!-- /.container-fluid -->
 </nav>
 <div class="col-md-12" ng-if="$ctrl.showcapturaserie">
-  <h3 class="text-center text-primary"><b>Crea tu cuenta de Star TV</b></h3>
 
-  <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
-    <h4 class="text-center" style="font-family: 'Roboto', sans-serif;"> Ingresa la serie del aparato principal  </h4>
-    <div class="col-md-8">
-      <input type="text" class="form-control" placeholder="Ingresa aqui el número de serie" ng-model="$ctrl.serie">
-      <br>
-      <!-- <div class="alert alert-info" role="alert">
-        <i class="fa fa-info-circle" aria-hidden="true"></i> Si necesitas ayuda para saber la ubicación de la serie y el
-        tipo de aparato puedes consultarla aquí
-        <a href="#" class="alert-link">Ayuda</a>
-      </div>-->
-    </div>
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-3 text-center">
+      <div class="col-md-12">
+        <h3 class="text-center text-primary">
+          <b>Crea tu cuenta de Star TV</b>
+        </h3>
+      </div>
+      <div class="col-md-12">
+        <h4 style="font-family: 'Roboto', sans-serif;"> Ingresa la serie del aparato principal </h4>
+      </div>
+      <div class="col-md-12">
+        <div class="form-group">
+          <div class="col-md-8">
+            <input type="text" class="form-control" placeholder="Ingresa aqui el número de serie" ng-model="$ctrl.serie">
+            <span class="" ng-show="$ctrl.waitverification">
+                <img src="images/Radio.gif" width="30" height="30"> verificando......</span>
+          </div>
+          <div class="col-md-4">
+            <button class="btn btn-warning" ng-disabled="$ctrl.serie == null" ng-click="$ctrl.confirmar()"> Aceptar</button>
+          </div>
 
-    <div class="col-md-4">
-      <button class="btn btn-warning btn-block " ng-click="$ctrl.confirmar()"> Aceptar</button>
+        </div>
+      </div>
+
     </div>
   </div>
-
-  <div class="col-md-12">
+  <hr>
+  <div class="row">
     <div class="col-md-12">
-      <h3 class="text-primary text-center">Idenfica la serie de tu aparato</h3>
-      <hr>
+      <div class="col-md-12">
+        <h3 class="text-primary text-center">Idenfica la serie de tu aparato</h3>
+
+        <div class="col-md-6 text-center col-xs-12">
+          <h3>Digital</h3>
+          <img src="images/stb.jpg" width="300" height="250">
+        </div>
+        <div class="col-md-6 text-center col-xs-12">
+          <h3>Internet</h3>
+          <img src="images/cablemodem.jpg" width="300" height="250">
+        </div>
+      </div>
     </div>
-
-    <div class="col-md-6 text-center">
-      <img src="images/stb.jpg" width="400" height="300">
-    </div>
-    <div class="col-md-6 text-center">
-      <img src="images/cablemodem.jpg" width="400" height="300">
-    </div>
-
-
-
-
   </div>
 </div>
 
@@ -79,12 +89,14 @@
 <div class="col-md-12  " ng-if="$ctrl.showinfo">
 
   <div class="col-md-8 card col-md-offset-2 col-sm-8 col-sm-offset-2">
-    <div class="row" style="background:black; padding: 10px;">
+    <div class="row" style="background:rgb(226, 187, 15); padding: 10px;">
       <div class="col-md-3">
-        <img src="images/startvblack.svg" width="100" height="100">
+       <!--  <img src="images/startvblack.svg" width="100" height="100"> -->
       </div>
       <div class="col-md-9">
-        <h3 style="color: white"><b>¡Bienvenido sus datos han sido validados! </b></h3>
+        <h3 style="color: white">
+          <b>¡Bienvenido tu información han sido validada! </b>
+        </h3>
       </div>
     </div>
 
@@ -93,17 +105,25 @@
       <form class="login-form" autocomplete="off" name="form" ng-submit="$ctrl.Registrar()">
         <div class="col-md-12">
           <div class="col-md-6" style="margin-top: 50px;">
-            <h3><b>Cliente: {{$ctrl.user.Cliente}}</b></h3>
+            <h3>
+              <b>Cliente: {{$ctrl.user.Cliente}}</b>
+            </h3>
             <h4>No.Contrato: {{$ctrl.user.ContratoCompuesto}}</h4>
             <h3>No.serie: {{$ctrl.serie}}</h3>
 
           </div>
           <div class="col-md-6">
-            <label class="text-muted text-center"><b>Ingresa el correo electrónico con el que accesarás a este sitio</b> </label>
+            <label class="text-muted text-center">
+              <b>Ingresa el correo electrónico con el que accesarás a este sitio</b>
+            </label>
 
             <div class="col-md-12">
-              <input type="email" class="form-control" name="email" placeholder="Ingresa tu correo electrónico" ng-model="$ctrl.email"
+              <input type="email" class="form-control" name="email" ng-model="$ctrl.email" ng-keyup="$ctrl.valideEmail($ctrl.email)" placeholder="Ingresa tu correo electrónico"
                 required>
+              <span class="text-danger" ng-show="$ctrl.wait">
+                <img src="images/Spinner.gif" width="20" height="20"> verificando......</span>
+              <span class="text-danger" ng-show="$ctrl.showMessageemail">
+                <i class="{{$ctrl.iconemail}}"></i>{{$ctrl.messageemail}}</span>
               <span class="text-danger" ng-show="!form.email.$valid"> ¡No es un correo valido!</span>
             </div>
             <div class="col-md-12">
@@ -120,13 +140,13 @@
             </div>
             <div class="col-md-12">
 
-              <div vc-recaptcha theme="'light'" key="$ctrl.captcha.key" on-create="$ctrl.setWidgetId(widgetId)" on-success="$ctrl.setResponse(response)"
+              <div vc-recaptcha theme="'light'" lang="es" key="$ctrl.captcha.key" on-create="$ctrl.setWidgetId(widgetId)" on-success="$ctrl.setResponse(response)"
                 on-expire="$ctrl.cbExpiration()"></div>
             </div>
-            <br>
-            <br>
-            <div class="col-md-12">
-              <button type="submit" class="btn btn-warning btn-block" ng-disabled="!form.$valid  ||  $ctrl.captcharesponse ==null"> Registrar </button>
+           
+            <div class="col-md-12" style="margin-top:15px;">
+
+              <button type="submit" class="btn btn-warning btn-block" ng-disabled="!form.$valid  ||  $ctrl.captcharesponse ==null || $ctrl.showMessageemail==true"> Registrar </button>
 
             </div>
             <div class="col-md-12">
@@ -146,7 +166,9 @@
     <div class="row">
       <div class="alert alert-warning text-center" role="alert">
 
-        <h5>¿No reconoces esta información?,<a class="alert-link" href="#">Intenta ingresando otra serie</a></h5>
+        <h5>¿No reconoces esta información?,
+          <a class="alert-link" href="#">Intenta ingresando otra serie</a>
+        </h5>
         <h6> Atención a clientes:01 800 700 STAR (7827)</h6>
       </div>
 
@@ -156,42 +178,23 @@
 
 
 </div>
+<!--  -->
+<div class="col-md-6 col-md-offset-3 text-center" ng-if="$ctrl.showsuccess">
 
-
-<!--    <h5>Selecciona el servicio que tienes instalado</h5>
-
-    <div class="col-md-6">
-      <h1>Televisón Digital</h1>
-    </div>
-
-    <div class="col-md-6">
-      <h1>Internet y Bundle</h1>
-    </div>-->
-
-
-<!-- <div class="col-md-3">
-    <div class="thumbnail">
-      <img src="images/Captura2.PNG" alt="...">
-      <div class="caption">
-        <h3>Thumbnail label</h3>
-        <p>...</p>
-        <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+    <div class="alert alert-success" role="alert">
+        <h3>
+            <strong>¡ Bien hecho!</strong> tu registro se ha completado correctamente, ahora puedes consultar tu estado de cuenta 
+            solo tienes que iniciar sesión con este correo <b> {{$ctrl.email }} </b> y tu contraseña<br><br><br>
+            <h5> Atención a clientes:01 800 700 STAR (7827)</h5>
+            <br>
+            <a href=""><h3> Iniciar sesión </h3></a>
+        </h3>
       </div>
-    </div>
-
-  </div>
 
 
+</div>
 
-  <div class="col-md-3">
-    <div class="thumbnail">
-      <img src="images/Captura1.PNG" alt="...">
-      <div class="caption">
-        <h3>Thumbnail label</h3>
-        <p>...</p>
-        <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
-      </div>
-    </div>
 
-  </div>-->
+
+
 </div>

@@ -1,13 +1,43 @@
 'use strict';
 angular.module('softvApp')
-  .factory('signInFactory', function ($http, $q, $window, globalService) {
+  .factory('signInFactory', function ($http, $q, $window, globalService, $timeout) {
     var factory = {};
     var paths = {
       GetvalidaAparato: '/SessionWeb/GetvalidaAparato',
       Getregistracliente: '/SessionWeb/Getregistracliente',
       GetValidaRecoverPassword: '/SessionWeb/GetValidaRecoverPassword',
-      GetUpdateCliente: '/SessionWeb/GetUpdateCliente'
+      GetUpdateCliente: '/SessionWeb/GetUpdateCliente',
+      validateEmail:'/SessionWeb/validateEmail'
     };
+
+
+    factory.validateEmail = function (email,contrato) {
+      var deferred = $q.defer();
+      var Parametros = {
+        'email': email,
+        'contrato':contrato     
+      };
+      var config = {
+        headers: {
+          'Authorization': 'Basic ' + ''
+        }
+      };
+      
+      $http.post(globalService.getUrlregistro() + paths.validateEmail, JSON.stringify(Parametros), config)
+        .then(function (response) {
+          $timeout(function() {
+            deferred.resolve(response);
+          }, 1000);
+         
+        })
+        .catch(function (response) {
+
+          deferred.reject(response.statusText);
+        });
+      return deferred.promise;
+    };
+
+
 
     factory.GetUpdateCliente = function (contrato, correo, password) {
       var deferred = $q.defer();
@@ -59,27 +89,7 @@ angular.module('softvApp')
     };
 
 
-    factory.GetvalidaAparato = function (serie) {
-      var deferred = $q.defer();
-      var Parametros = {
-        'id': 0,
-        'serie': serie
-      };
-      var config = {
-        headers: {
-          'Authorization': 'Basic ' + ''
-        }
-      };
-      $http.post(globalService.getUrlregistro() + paths.GetvalidaAparato, JSON.stringify(Parametros), config)
-        .then(function (response) {
-          deferred.resolve(response);
-        })
-        .catch(function (response) {
-
-          deferred.reject(response.statusText);
-        });
-      return deferred.promise;
-    };
+  
 
 
 
@@ -100,7 +110,9 @@ angular.module('softvApp')
       };
       $http.post(globalService.getUrlregistro() + paths.GetvalidaAparato, JSON.stringify(Parametros), config)
         .then(function (response) {
-          deferred.resolve(response);
+          $timeout(function() {
+            deferred.resolve(response);
+          }, 3000);
         })
         .catch(function (response) {
 
