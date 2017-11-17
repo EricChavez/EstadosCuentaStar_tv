@@ -6,6 +6,13 @@
     font-family: 'Calibri';
   }
 
+  #serie{
+    color: rgb(104, 26, 127);
+    background-color: white;
+    font-size: 19px !important;
+    text-align: center;
+  }
+
 </style>
 <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 <nav class="navbar navbar-default">
@@ -40,24 +47,24 @@
 </nav>
 <div class="col-md-12" ng-if="$ctrl.showcapturaserie">
 
-  <div class="row">
+  <div class="row" style="background-color: #ffd12fc7; padding:30px;">
     <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-3 text-center">
       <div class="col-md-12">
-        <h3 class="text-center text-primary">
+        <h2 class="text-center text-primary">
           <b>Crea tu cuenta de Star TV</b>
-        </h3>
+        </h2>
       </div>
       <div class="col-md-12">
         <h4 style="font-family: 'Roboto', sans-serif;"> Ingresa la serie del aparato principal </h4>
       </div>
       <div class="col-md-12">
         <div class="form-group">
-          <div class="col-md-8">
-            <input type="text" class="form-control" placeholder="Ingresa aqui el número de serie" ng-model="$ctrl.serie">
-            <span class="" ng-show="$ctrl.waitverification">
+          <div class="col-md-10 text-right">
+            <input type="text" class="form-control" id="serie" placeholder="Ingresa aquí el número de serie" ng-model="$ctrl.serie">
+            <span class="text-center" ng-show="$ctrl.waitverification">
                 <img src="images/Radio.gif" width="30" height="30"> verificando......</span>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-2 text-left">
             <button class="btn btn-warning" ng-disabled="$ctrl.serie == null" ng-click="$ctrl.confirmar()"> Aceptar</button>
           </div>
 
@@ -66,7 +73,7 @@
 
     </div>
   </div>
-  <hr>
+
   <div class="row">
     <div class="col-md-12">
       <div class="col-md-12">

@@ -12,7 +12,7 @@ angular
           vm.showresetform = true;
           vm.contrato = result.data.GetValidaRecoverPasswordResult;
         } else {
-          ngNotify.set('No se encpntró ninguna cuenta activa con los datos proporcionados ', 'error');
+          ngNotify.set('No se encontró ninguna cuenta activa con los datos proporcionados ', 'error');
         }
       });
     }

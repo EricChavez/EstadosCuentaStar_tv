@@ -57,7 +57,21 @@ angular
 						controllerAs: '$ctrl'
 					}
 				}		
-			}		
+			},
+			{
+				name: 'ayuda',	
+				url: '/ayuda',			
+				data: {
+					pageTitle: 'star TV| ayuda'
+				},
+				views: {
+					'recoverview': {
+						templateUrl: 'views/ayuda.html',
+						controller: 'ayudaCtrl',
+						controllerAs: '$ctrl'
+					}
+				}		
+			}	
 			
 		];
 
