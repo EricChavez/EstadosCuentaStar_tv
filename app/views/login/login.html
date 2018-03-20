@@ -8,35 +8,26 @@
 
 
 <div class="col-md-12 col-sm-12 col-xs-12" style="margin-top: 70px;">
-
-  <div class="card col-md-4  col-md-offset-4  col-xs-12  col-sm-12" style="padding:30px; ">
-    <div class="col-md-12 text-center " style="margin-bottom:50px;">
-      <img src="images/Logostartv.png" class="img"  width="185" height="130">
-      
-    </div>
+  <div class="card col-md-4  col-md-offset-4  col-xs-12  col-sm-12" style="padding:50px; ">
+    <!--  <div class="col-md-12 text-center " style="margin-bottom:50px; background-color:black" >
+      <img src="images/Logotipo_bco2-1968ace7.png" class="img" >
+    </div>  -->
+     <div class="col-md-12 text-center " style="margin-bottom:50px;">
+      <img src="images/Logostartv.png" class="img" width="185" height="130">
+    </div> 
     <form class="login-form" angular-validator-submit="$ctrl.login()" autocomplete="off" name="myForm" novalidate angular-validator>
       <div class="col-md-12">
-
-      <!--   <h3 class="text-info text-center" style="color: #ffc526;">Accesa al sistema</h3> -->
+        <!--   <h3 class="text-info text-center" style="color: #ffc526;">Accesa al sistema</h3> -->
         <p class="text-muted text-center">Ingresa tu usuario y contraseña proporcionado</p>
-
-
         <div class="form-group">
-
           <input type="text" placeholder="correo electrónico" name="nombre" ng-model="$ctrl.user" validate-on="dirty" class="form-control"
             required-message="'El usuario es obligatorio.'" required/>
         </div>
         <div class="form-group">
-
           <input type="password" placeholder="password" name="password" ng-model="$ctrl.password" validate-on="dirty" class="form-control"
             required-message="'La contraseña es obligatoria.'" required/>
         </div>
-
       </div>
-
-
-
-
       <div class="col-md-12">
         <div class="col-md-6 col-xs-12 col-sm-12">
           <a href="#!/recover" class="text-info">Olvidé mi contraseña</a>
@@ -47,7 +38,9 @@
       </div>
       <div class="col-md-12 text-center">
         <br>
-        <a href="#!/signin">¿Aún no estas registrado? <b> Crear cuenta</b></a>
+        <a href="#!/signin">¿Aún no estas registrado?
+          <b> Crear cuenta</b>
+        </a>
       </div>
 
     </form>

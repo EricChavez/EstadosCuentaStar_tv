@@ -94,7 +94,7 @@ angular
       //   return true;
       //});
     } else {
-      $location.path('/auth/');
+    //  $location.path('/auth/');
       // PermPermissionStore.definePermission('anonymous', function () {
       //  return true;
       //});

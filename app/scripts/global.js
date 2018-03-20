@@ -4,15 +4,15 @@ angular
   .service('globalService', function () {
     var svc = {};
     svc.getUrl = function() {
-      return 'http://192.168.50.33:6060/SoftvWCFService.svc';    
+      return 'http://172.16.126.44:5000/SoftvWCFService.svc';    
     	};
 
       svc.getUrlregistro = function() {
-      return 'http://192.168.50.33:6070/SoftvWCFService.svc';    
+      return 'http://172.16.126.44:5050/SoftvWCFService.svc';    
     	};
 
     	svc.getUrlReportes = function() {
-    		return 'http://192.168.50.33:6060/';
+    		return 'http://172.16.125.44:5000/';
     	};
 
     

@@ -1,68 +1,84 @@
 <style>
   html,
   body {
-    height: 100%;
+   
     background-color: white;
-    font-family: 'Calibri';
+ 
   }
 
-  #serie{
+  #serie {
     color: rgb(104, 26, 127);
     background-color: white;
     font-size: 19px !important;
     text-align: center;
   }
 
+  .nav {
+    background-color: #251e1e;
+    border-color: #251e1e;
+    color: white;
+    padding: 10px;
+  }
+
+  .nav {
+    border-radius: 0px;
+  }
+
+  a {        
+   
+    text-decoration: none;
+    color: #fff;
+    font-size: 17px;
+  }
+
+  a:hover {
+    
+    text-decoration: none;
+    color: #e2b22b;
+    font-size: 17px;
+  }
+
+  .capturaserie{
+    margin-top:0px;
+    background-color: #251e1e; padding:30px;
+    font-family: 'Roboto', sans-serif; color:white;
+  }
+
 </style>
 <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
-        aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
 
-      <img src="images/startv.png" width="50" height="35">
-    </div>
-
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-
-
-      <ul class="nav navbar-nav navbar-right">
-        <li>
-          <a href="#" class="text-info">Iniciar sesión</a>
-        </li>
-
-      </ul>
-    </div>
-    <!-- /.navbar-collapse -->
+  <div class="col-md-12 nav">
+      <div class="col-md-4">
+          <img src="images/Logotipo_bco2-1968ace7.png">
+        </div>
+        <div class="col-md-4"></div>
+        <div class="col-md-4 text-right">
+        
+          <a href="#" >Iniciar sesión</a>
+        </div>
   </div>
-  <!-- /.container-fluid -->
-</nav>
-<div class="col-md-12" ng-if="$ctrl.showcapturaserie">
+ 
 
-  <div class="row" style="background-color: #ffd12fc7; padding:30px;">
-    <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-3 text-center">
+
+<div class="row capturaserie" ng-if="$ctrl.showcapturaserie">
+
+  <div class="row">
+    <div class="col-md-3 col-sm-3"></div>
+    <div class="col-md-6  col-sm-8  text-center">
       <div class="col-md-12">
-        <h2 class="text-center text-primary">
+        <h2 class="text-center">
           <b>Crea tu cuenta de Star TV</b>
         </h2>
       </div>
       <div class="col-md-12">
-        <h4 style="font-family: 'Roboto', sans-serif;"> Ingresa la serie del aparato principal </h4>
+        <h4 > Ingresa la serie del aparato principal </h4>
       </div>
       <div class="col-md-12">
         <div class="form-group">
           <div class="col-md-10 text-right">
             <input type="text" class="form-control" id="serie" placeholder="Ingresa aquí el número de serie" ng-model="$ctrl.serie">
             <span class="text-center" ng-show="$ctrl.waitverification">
-                <img src="images/Radio.gif" width="30" height="30"> verificando......</span>
+              <img src="images/Radio.gif" width="30" height="30"><b>verificando......</b> </span>
           </div>
           <div class="col-md-2 text-left">
             <button class="btn btn-warning" ng-disabled="$ctrl.serie == null" ng-click="$ctrl.confirmar()"> Aceptar</button>
@@ -73,24 +89,26 @@
 
     </div>
   </div>
-
-  <div class="row">
+</div>
+ 
     <div class="col-md-12">
       <div class="col-md-12">
-        <h3 class="text-primary text-center">Identifica la serie de tu aparato</h3>
+        <h3 class=" text-center">
+          <b style="font-size:1.3em;">Identifica la serie de tu aparato</b>
+        </h3>
 
         <div class="col-md-6 text-center col-xs-12">
-          <h3>Digital</h3>
+          <h3><img src="images/favicon.png"> Digital</h3>
           <img src="images/stb.jpg" width="300" height="250">
         </div>
         <div class="col-md-6 text-center col-xs-12">
-          <h3>Internet</h3>
+          <h3><img src="images/favicon.png"> Internet</h3>
           <img src="images/cablemodem.jpg" width="300" height="250">
         </div>
       </div>
     </div>
-  </div>
-</div>
+  
+
 
 
 <div class="col-md-12  " ng-if="$ctrl.showinfo">
@@ -98,7 +116,7 @@
   <div class="col-md-8 card col-md-offset-2 col-sm-8 col-sm-offset-2">
     <div class="row" style="background:rgb(226, 187, 15); padding: 10px;">
       <div class="col-md-3">
-       <!--  <img src="images/startvblack.svg" width="100" height="100"> -->
+        <!--  <img src="images/startvblack.svg" width="100" height="100"> -->
       </div>
       <div class="col-md-9">
         <h3 style="color: white">
@@ -150,10 +168,11 @@
               <div vc-recaptcha theme="'light'" lang="es" key="$ctrl.captcha.key" on-create="$ctrl.setWidgetId(widgetId)" on-success="$ctrl.setResponse(response)"
                 on-expire="$ctrl.cbExpiration()"></div>
             </div>
-           
+
             <div class="col-md-12" style="margin-top:15px;">
 
-              <button type="submit" class="btn btn-warning btn-block" ng-disabled="!form.$valid  ||  $ctrl.captcharesponse ==null || $ctrl.showMessageemail==true"> Registrar </button>
+              <button type="submit" class="btn btn-warning btn-block" ng-disabled="!form.$valid  ||  $ctrl.captcharesponse ==null || $ctrl.showMessageemail==true">
+              Registrar </button>
 
             </div>
             <div class="col-md-12">
@@ -188,15 +207,21 @@
 <!--  -->
 <div class="col-md-6 col-md-offset-3 text-center" ng-if="$ctrl.showsuccess">
 
-    <div class="alert alert-success" role="alert">
-        <h3>
-            <strong>¡ Bien hecho!</strong> tu registro se ha completado correctamente, ahora puedes consultar tu estado de cuenta 
-            solo tienes que iniciar sesión con este correo <b> {{$ctrl.email }} </b> y tu contraseña<br><br><br>
-            <h5> Atención a clientes:01 800 700 STAR (7827)</h5>
-            <br>
-            <a href="#"><h3> Iniciar sesión </h3></a>
-        </h3>
-      </div>
+  <div class="alert alert-success" role="alert">
+    <h3>
+      <strong>¡ Bien hecho!</strong> tu registro se ha completado correctamente, ahora puedes consultar tu estado de cuenta solo
+      tienes que iniciar sesión con este correo
+      <b> {{$ctrl.email }} </b> y tu contraseña
+      <br>
+      <br>
+      <br>
+      <h5> Atención a clientes:01 800 700 STAR (7827)</h5>
+      <br>
+      <a href="#">
+        <h3> Iniciar sesión </h3>
+      </a>
+    </h3>
+  </div>
 
 
 </div>
