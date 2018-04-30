@@ -69,7 +69,7 @@ angular
     vm.widgetId = null;
     vm.showsuccess=false;
     vm.captcha = {
-      key: '6Lf9hzYUAAAAAPKN-w3LREiE1RgSOMYQ6U3sE_CH'
+      key: '6LctdVYUAAAAAHBn67eI0qWOsdILUtmTYV1B9YVZ'
     };
     vm.setResponse = function (response) {
       console.info('Response available');

@@ -1,0 +1,232 @@
+<style>
+    html,
+    body {
+     
+      background-color: white;
+   
+    }
+  
+    #serie {
+      color: rgb(104, 26, 127);
+      background-color: white;
+      font-size: 19px !important;
+      text-align: center;
+    }
+  
+    .nav {
+      background-color: #251e1e;
+      border-color: #251e1e;
+      color: white;
+      padding: 10px;
+    }
+  
+    .nav {
+      border-radius: 0px;
+    }
+  
+    a {        
+     
+      text-decoration: none;
+      color: #fff;
+      font-size: 17px;
+    }
+  
+    a:hover {
+      
+      text-decoration: none;
+      color: #e2b22b;
+      font-size: 17px;
+    }
+  
+    .capturaserie{
+      margin-top:0px;
+      background-color: #251e1e; padding:30px;
+      font-family: 'Roboto', sans-serif; color:white;
+    }
+  
+  </style>
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  
+    <div class="col-md-12 nav">
+        <div class="col-md-4">
+            <img src="images/Logotipo_bco2-1968ace7.png">
+          </div>
+          <div class="col-md-4"></div>
+          <div class="col-md-4 text-right">
+          
+          
+            <a href="http://189.204.147.26:2010/#!/auth/login" >Iniciar sesión</a> 
+          </div>
+    </div>
+   
+  
+  
+  <div class="row capturaserie" ng-if="$ctrl.showcapturaserie">
+  
+    <div class="row">
+      <div class="col-md-3 col-sm-3"></div>
+      <div class="col-md-6  col-sm-8  text-center">
+        <div class="col-md-12">
+          <h2 class="text-center">
+            <b>Crea tu cuenta de Star TV</b>
+          </h2>
+        </div>
+        <div class="col-md-12">
+          <h4 > Ingresa la serie del aparato principal </h4>
+        </div>
+        <div class="col-md-12">
+          <div class="form-group">
+            <div class="col-md-10 text-right">
+              <input type="text" class="form-control" id="serie" placeholder="Ingresa aquí el número de serie" ng-model="$ctrl.serie">
+              <span class="text-center" ng-show="$ctrl.waitverification">
+                <img src="images/Radio.gif" width="30" height="30"><b>verificando......</b> </span>
+            </div>
+            <div class="col-md-2 text-left">
+              <button class="btn btn-warning" ng-disabled="$ctrl.serie == null" ng-click="$ctrl.confirmar()"> Aceptar</button>
+            </div>
+  
+          </div>
+        </div>
+  
+      </div>
+    </div>
+  </div>
+   
+      <div class="col-md-12" ng-if="$ctrl.showcapturaserie">
+        <div class="col-md-12">
+          <h3 class=" text-center">
+            <b style="font-size:1.3em;">Identifica la serie de tu aparato</b>
+          </h3>
+  
+          <div class="col-md-6 text-center col-xs-12">
+            <h3><img src="images/favicon.png"> Digital</h3>
+            <img src="images/stb.jpg" width="300" height="250">
+          </div>
+          <div class="col-md-6 text-center col-xs-12">
+            <h3><img src="images/favicon.png"> Internet</h3>
+            <img src="images/cablemodem.jpg" width="300" height="250">
+          </div>
+        </div>
+      </div>
+    
+  
+  
+  
+  <div class="col-md-12  " ng-if="$ctrl.showinfo">
+  
+    <div class="col-md-8 card col-md-offset-2 col-sm-8 col-sm-offset-2">
+      <div class="row" style="background:rgb(226, 187, 15); padding: 10px;">
+        <div class="col-md-3">
+          <!--  <img src="images/startvblack.svg" width="100" height="100"> -->
+        </div>
+        <div class="col-md-9">
+          <h3 style="color: white">
+            <b>¡Bienvenido tu información ha sido validada! </b>
+          </h3>
+        </div>
+      </div>
+  
+  
+      <div class="card-body">
+        <form class="login-form" autocomplete="off" name="form" ng-submit="$ctrl.Registrar()">
+          <div class="col-md-12">
+            <div class="col-md-6" style="margin-top: 50px;">
+              <h3>
+                <b>Cliente: {{$ctrl.user.Cliente}}</b>
+              </h3>
+              <h4>No.Contrato: {{$ctrl.user.ContratoCompuesto}}</h4>
+              <h3>No.serie: {{$ctrl.serie}}</h3>
+  
+            </div>
+            <div class="col-md-6">
+              <label class="text-muted text-center">
+                <b>Ingresa el correo electrónico con el que accesarás a este sitio</b>
+              </label>
+  
+              <div class="col-md-12">
+                <input type="email" class="form-control" name="email" ng-model="$ctrl.email" ng-keyup="$ctrl.valideEmail($ctrl.email)" placeholder="Ingresa tu correo electrónico"
+                  required>
+                <span class="text-danger" ng-show="$ctrl.wait">
+                  <img src="images/Spinner.gif" width="20" height="20"> verificando......</span>
+                <span class="text-danger" ng-show="$ctrl.showMessageemail">
+                  <i class="{{$ctrl.iconemail}}"></i>{{$ctrl.messageemail}}</span>
+                <span class="text-danger" ng-show="!form.email.$valid"> ¡No es un correo valido!</span>
+              </div>
+              <div class="col-md-12">
+                <input type="password" class="form-control" placeholder="Ingresa tu contraseña" pattern=".{6,}" name="password" ng-model="$ctrl.password">
+                <span class="text-danger" ng-show="!form.password.$valid">la contraseña es obligatoria y tiene que tener un minimo de 6 caracteres</span>
+              </div>
+              <div class="col-md-12">
+                <div class="form-group" ng-class="{ 'has-error': form.passwordvalidate.$invalid && !form.passwordvalidate.$pristine }">
+                  <label for="passwordvalidate">Confirma contraseña</label>
+                  <input type="password" class="form-control" placeholder="Valida tu contraseña" pattern=".{6,}" required match="$ctrl.password"
+                    name="passwordvalidate" ng-model="$ctrl.passwordvalidate">
+                  <span class="text-danger" ng-if="$ctrl.password !== $ctrl.passwordvalidate" ng-show="form.passwordvalidate.$dirty"> La contraseña no coincide</span>
+                </div>
+              </div>
+              <div class="col-md-12">
+  
+                <div vc-recaptcha theme="'light'" lang="es" key="$ctrl.captcha.key" on-create="$ctrl.setWidgetId(widgetId)" on-success="$ctrl.setResponse(response)"
+                  on-expire="$ctrl.cbExpiration()"></div>
+              </div>
+  
+              <div class="col-md-12" style="margin-top:15px;">
+  
+                <button type="submit" class="btn btn-warning btn-block" ng-disabled="!form.$valid  ||  $ctrl.captcharesponse ==null || $ctrl.showMessageemail==true">
+                Registrar </button>
+  
+              </div>
+              <div class="col-md-12">
+                <p class="help-block">Te enviaremos un correo a esta cuenta una vez finalizado el registro</p>
+              </div>
+  
+            </div>
+          </div>
+  
+  
+  
+        </form>
+  
+  
+  
+      </div>
+      <div class="row">
+        <div class="alert alert-warning text-center" role="alert">
+  
+          <h5>¿No reconoces esta información?,
+            <a class="alert-link" href="http://189.204.147.26:2010/EstadoCuentaApp/#!/registro" onclick="location.reload();">Intenta ingresando otra serie</a>
+          </h5>
+          <h6> Atención a clientes:01 800 700 STAR (7827)</h6>
+        </div>
+  
+      </div>
+    </div>
+  
+  
+  
+  </div>
+  <!--  -->
+  <div class="col-md-6 col-md-offset-3 text-center" ng-if="$ctrl.showsuccess">
+  
+    <div class="alert alert-success" role="alert">
+      <h3>
+        <strong>¡ Bien hecho!</strong> tu registro se ha completado correctamente, ahora puedes consultar tu estado de cuenta solo
+        tienes que iniciar sesión con este correo
+        <b> {{$ctrl.email }} </b> y tu contraseña
+        <br>
+        <br>
+        <br>
+        <h5> Atención a clientes:01 800 700 STAR (7827)</h5>
+        <br>
+        <a href="http://189.204.147.26:2010/#!/auth/login" >Iniciar sesión</a> 
+      </h3>
+    </div>
+  
+  
+  </div>
+  
+  
+  
+  
+  </div>
+  

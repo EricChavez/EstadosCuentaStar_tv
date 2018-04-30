@@ -1,0 +1,184 @@
+<style>
+  html,
+  body {
+
+    background-color: white;
+    font-family: 'Calibri';
+  }
+
+  .nav {
+    background-color: #251e1e;
+    border-color: #251e1e;
+    color: white;
+    padding: 10px;
+  }
+
+  .nav {
+    border-radius: 0px;
+  }
+
+  a {
+    padding: 10px;
+    text-decoration: none;
+    color: #fff;
+    font-size: 17px;
+  }
+
+  a:hover {
+    text-decoration: none;
+    color: #e2b22b;
+    font-size: 17px;
+  }
+
+  .capturaserie{
+    margin-top:0px;
+    background-color: #251e1e; padding:30px;
+    font-family: 'Roboto', sans-serif; color:white;
+  }
+
+</style>
+<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+<div class="col-md-12 nav">
+    <div class="col-md-4" style="padding:10px;">
+        <img src="images/Logotipo_bco2-1968ace7.png">
+      </div>
+      <div class="col-md-4"></div>
+      <div class="col-md-4 text-right">
+   <br>
+        <a href="http://189.204.147.26:2010/#!/auth/login" >Iniciar sesión</a>
+      </div>
+</div>
+
+<div class="col-md-12" ng-if="$ctrl.showvalidationform">
+  <form class="login-form" angular-validator-submit="$ctrl.validar()" autocomplete="off" name="myForm" novalidate angular-validator>
+    <h3 class="text-center text-primary">
+      <b>Recupera tu contraseña</b>
+    </h3>
+
+    <br>
+    <div class="col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4">
+      <h4 class=" text-center">Ingresa la siguiente información para poder reestablecer tu contraseña</h4>
+      <div class="col-md-12">
+        <label>
+          <b> Ingresa tu email</b>
+        </label>
+        <input type="text" name="email" class="form-control" placeholder="Ingresa aquí el tu email" validate-on="dirty" required-message="'El email es es obligatorio.'"
+          required ng-model="$ctrl.email">
+      </div>
+      <div class="col-md-12">
+        <br>
+        <label>
+          <b> Ingresa la serie del aparato principal</b>
+        </label>
+        <input name="serie" type="text" class="form-control" placeholder="Ingresa aquí el número de serie" validate-on="dirty" required-message="'La serie es obligatoria.'"
+          required ng-model="$ctrl.serie">
+      </div>
+      <div class="col-md-6 col-md-offset-6 text-right">
+        <br>
+        <button class="btn btn-warning btn-block " ng-click="$ctrl.confirmar()"> Aceptar</button>
+      </div>
+      <br>
+   <!--    <div class="col-md-12">
+        <br>
+        <div class="alert alert-warning" role="alert">
+          <i class="fa fa-info-circle" aria-hidden="true"></i> Si necesitas ayuda para saber la ubicación de la serie y el tipo de aparato puedes consultarla aquí
+          <a href="#!/ayuda" class="alert-link">Ayuda</a>
+        </div>
+      </div> -->
+
+    </div>
+
+  </form>
+</div>
+
+<div class="col-md-12" ng-if="$ctrl.showresetform">
+  <div class="col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4">
+    <h3 class=" text-center">Proceso de reestablecimiento de contraseña</h3>
+    <!--   angular-validator-submit="$ctrl.reset()"-->
+    <!--  novalidate angular-validator-->
+    <form class="login-form" autocomplete="off" name="form" ng-submit="$ctrl.reset()">
+      <div class="alert alert-success" role="alert">
+        <b>¡Correcto!</b> la validación se hizo correctamente,ahora puedes elegir una nueva contraseña y modificar tu correo
+        con el que puedes accesar al sistema</div>
+
+      <div class="col-md-12">
+        <label>Correo electrónico actual</label>
+        <input type="email" class="form-control" name="correoactual" ng-keyup="$ctrl.valideEmail($ctrl.email)" class="form-control"
+          required ng-model="$ctrl.email">
+        <span class="text-danger" ng-show="$ctrl.wait">
+          <img src="images/Spinner.gif" width="20" height="20"> verificando......</span>
+        <span class="text-danger" ng-show="$ctrl.showMessageemail">
+          <i class="{{$ctrl.iconemail}}"></i>{{$ctrl.messageemail}}</span>
+        <p class="text-help text-danger">
+          <b>¡ Atención !</b> este es el correo de acceso al sistema, al modificarlo tendras que acceder con el nuevo correo
+          registrado </p>
+        <span class="text-danger" ng-show="!form.correoactual.$valid"> ¡No es un correo valido!</span>
+      </div>
+
+      <div class="col-md-12">
+        <br>
+        <div class="form-group">
+          <label>Nueva Contraseña</label>
+          <input type="password" class="form-control" pattern=".{6,}" required name="nuepass" ng-model="$ctrl.nuepass">
+          <span class="text-danger" ng-show="!form.nuepass.$valid">la contraseña es obligatoria y tiene que tener un minimo de 6 caracteres</span>
+        </div>
+      </div>
+
+      <div class="col-md-12">
+        <br>
+        <div class="form-group" ng-class="{ 'has-error': form.valpass.$invalid && !form.valpass.$pristine }">
+          <label for="confirm-password">Confirma contraseña</label>
+          <input type="password" name="valpass" id="confirm-password" pattern=".{6,}" class="form-control" ng-model="$ctrl.valpass"
+            required match="$ctrl.nuepass" />
+          <span class="text-danger" ng-if="$ctrl.nuepass !== $ctrl.valpass" ng-show="form.valpass.$dirty"> La contraseña no coincide</span>
+        </div>
+      </div>
+
+      <div class="col-md-12">
+
+        <div vc-recaptcha theme="'light'" lang="es" key="$ctrl.captcha.key" on-create="$ctrl.setWidgetId(widgetId)" on-success="$ctrl.setResponse(response)"
+          on-expire="$ctrl.cbExpiration()"></div>
+      </div>
+
+      <div class="col-md-12">
+        <br>
+        <button type="submit" ng-disabled="!form.$valid  ||  $ctrl.captcharesponse ==null || $ctrl.showMessageemail==true" class="btn btn-warning btn-block">Cambiar mis datos de acceso</button>
+        <p class="text-muted text-center">(Al aceptar te enviaremos un correo con tus nuevas credenciales de acceso)</p>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!--  -->
+<div class="col-md-6 col-md-offset-3 text-center" ng-if="$ctrl.showsuccess">
+
+        <div class="alert alert-success" role="alert">
+            <h4>
+                <strong>¡ Bien hecho!</strong> el reestablecimiento de tu contraseña  se ha completado correctamente,
+                solo tienes que iniciar sesión con este correo <b> {{$ctrl.email }} </b> y tu nueva contraseña <br>               
+                <h4> Atención a clientes: 01 800 700 STAR (7827)</h4>
+                
+                <a href="http://189.204.147.26:2010/#!/auth/login"><h3> Iniciar sesión </h3></a>
+            </h4>
+          </div>
+    
+    
+    </div>
+
+    <div class="col-md-6 col-md-offset-3 text-center" ng-if="$ctrl.showerr">
+        
+                <div class="alert alert-danger" role="alert">
+                    <h3>
+                        <strong>¡ Atención !</strong> 
+                        lo sentimos, No pudimos  reestablecer tu contraseña intenta de nuevo y si el problema persiste comunicate a atención a clientes
+                        <br><br><br>
+                        <h5> Atención a clientes:01 800 700 STAR (7827)</h5>    
+                    </h3>
+                  </div>
+            
+            
+            </div>
+
+
+
+</div>

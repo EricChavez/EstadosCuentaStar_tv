@@ -43,6 +43,34 @@ angular.module("softvApp").config(function($stateProvider) {
         }
       }
     },
+     {
+      name: "registro",
+      url: "/registro",
+      data: {
+        pageTitle: " REGISTRATE | STAR GO"
+      },
+      views: {
+        signinview: {
+          templateUrl: "views/registro.html",
+          controller: "signinCtrl",
+          controllerAs: "$ctrl"
+        }
+      }
+    }, 
+    {
+      name: "recuperar",
+      url: "/recuperar",
+      data: {
+        pageTitle: " RECUPERAR CONTRASEÑA | STAR GO"
+      },
+      views: {
+        signinview: {
+          templateUrl: "views/recuperar.html",
+          controller: "recoverCtrl",
+          controllerAs: "$ctrl"
+        }
+      }
+    },
     {
       name: "recover",
       url: "/recover",
