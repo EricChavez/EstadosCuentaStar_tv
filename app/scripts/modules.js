@@ -98,6 +98,20 @@ angular.module("softvApp").config(function($stateProvider) {
           controllerAs: "$ctrl"
         }
       }
+    },
+    {
+      name: "ayudaregistro",
+      url: "/ayudaregistro",
+      data: {
+        pageTitle: "star TV| ayuda registro"
+      },
+      views: {
+        recoverview: {
+          templateUrl: "views/ayudaRegistro.html",
+          controller: "ayudaCtrl",
+          controllerAs: "$ctrl"
+        }
+      }
     }
   ];
 
