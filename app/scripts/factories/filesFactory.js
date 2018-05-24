@@ -4,7 +4,7 @@ angular
   .factory('filesFactory', function ($http, $q, globalService, $localStorage) {
     var factory = {};
     var paths = {
-      Getdocumentos: '/Usuario/Getdocumentos',
+      Getdocumentos: '/TransferService/DownloadFile',
       GetDeletedocumentos: '/Usuario/GetDeletedocumentos',
        Getdocumentosdisponibles: '/Usuario/Getdocumentosdisponibles'
     };

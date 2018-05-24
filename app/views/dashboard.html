@@ -14,6 +14,7 @@
   <div class="card contain-xs style-transparent">
     <div class="card-body">
       <div class="row">
+          
         <div class="card">
           <div class="card-body">
             <div ng-if="!$ctrl.sindocumentos" ng-repeat="x in $ctrl.documentos">
@@ -28,7 +29,11 @@
                 <h3>{{x.Importe | currency}}</h3>
                 <h4>{{x.Ticket}}</h4>
                 <h5>{{x.Fecha}}</h5>
-                 <a type="button" class="btn btn-sm  btn-warning" ng-click="$ctrl.descargar(x.opcion)"> <i class="fa fa-download"></i> Descargar </a>
+                <a  id='dwnldLnk' download='FacturaDigital.pdf' style="display:none;" />   
+                <a  id='dwnldLnk2' download='EstadoCuenta.pdf' style="display:none;" />
+                <a  id='dwnldLnk3' download='cdfi.xml' style="display:none;" />      
+                            
+                <a type="button"  class="btn btn-sm  btn-warning" ng-click="$ctrl.descargar(x.opcion)" title='toPDFFile.pdf'><i class="fa fa-download"></i> click para descargar</a>
 
               </div>
             </div>

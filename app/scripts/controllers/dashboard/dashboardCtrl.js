@@ -1,6 +1,6 @@
 'use strict';
 angular.module('softvApp')
-  .controller('dashboardCtrl', function (filesFactory, $localStorage, globalService, $sce) {
+  .controller('dashboardCtrl', function (filesFactory, $localStorage, globalService, $sce, $scope, $http) {
 
 
     function init() {
@@ -13,20 +13,41 @@ angular.module('softvApp')
     }
 
 
-
-
+   
     function descargar(op) {
       filesFactory.Getdocumentos($localStorage.currentUser.contrato, op)
         .then(function (response) {
-          vm.url = globalService.getUrlReportes() + '/Reportes/' + response.GetdocumentosResult[0].Nombre;
-          //document.getElementById("downloadbtn").click();
-          var anchor = angular.element('<a/>');
-          anchor.attr({
-            href: vm.url,
-            target: '_blank',
-            download: vm.url
-          })[0].click();
-          // filesFactory.GetDeletedocumentos(response.GetdocumentosResult[0].Nombre).then(function (data) {});
+           if (op==1){
+            var dlnk;   
+            var pdf='data:application/pdf;base64,'+response.DownloadFileResult.FileByteStream;
+            console.log(pdf);
+            dlnk = document.getElementById('dwnldLnk');
+            console.log(pdf);
+            dlnk.href = pdf;
+            dlnk.click();
+           }
+
+           if (op==2){
+
+            var dlnk;   
+            var pdf='data:text/plain;base64,'+response.DownloadFileResult.FileByteStream;
+            console.log(pdf);
+            dlnk = document.getElementById('dwnldLnk3');
+            console.log(pdf);
+            dlnk.href = pdf;
+            dlnk.click();
+           }
+
+           if (op==3){
+            var dlnk;   
+            var pdf='data:application/pdf;base64,'+response.DownloadFileResult.FileByteStream;
+            console.log(pdf);
+            dlnk = document.getElementById('dwnldLnk2');
+            console.log(pdf);
+            dlnk.href = pdf;
+            dlnk.click();
+           }    
+          
 
         });
     }
